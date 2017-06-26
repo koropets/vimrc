@@ -23,8 +23,8 @@ def download_extract_replace(plugin_name, zip_path, temp_dir):
     zip_f = zipfile.ZipFile(temp_zip_path)
     zip_f.extractall(temp_dir)
 
-    plugin_temp_path = path.join(temp_dir,
-                                 path.join(temp_dir, '%s-master' % plugin_name))
+    tmp_dir_full_name = path.join(temp_dir, '%s-master' % plugin_name)
+    plugin_temp_path = path.join(temp_dir, tmp_dir_full_name)
 
     # Remove the current plugin and replace it with the extracted
     plugin_dest_path = path.join(source_dir, plugin_name)
@@ -47,7 +47,6 @@ if __name__ == '__main__':
             for line in f:
                 name, github_url = line.rstrip().split(' ')
                 zip_path = github_zip % github_url
-                download_extract_replace(name, zip_path,
-                                        temp_directory)
+                download_extract_replace(name, zip_path, temp_directory)
     finally:
         shutil.rmtree(temp_directory)
