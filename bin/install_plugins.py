@@ -51,4 +51,3 @@ if __name__ == '__main__':
                                         temp_directory)
     finally:
         shutil.rmtree(temp_directory)
-        shutil.rmtree()
