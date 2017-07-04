@@ -9,7 +9,7 @@ vim-gitgutter https://github.com/airblade/vim-gitgutter
 syntastic https://github.com/scrooloose/syntastic
 neocomplete.vim https://github.com/Shougo/neocomplete.vim
 vim-go https://github.com/fatih/vim-go
-auto-pairs https://github.com/jiangmiao/auto-pairs
+neocomplete.vim https://github.com/shougo/neocomplete.vim
 tagbar https://github.com/majutsushi/tagbar
 vim-flake8 https://github.com/nvie/vim-flake8
 lightline.vim https://github.com/itchyny/lightline.vim

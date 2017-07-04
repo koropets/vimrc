@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 
 import zipfile
 import shutil
@@ -7,13 +7,13 @@ import requests
 
 from os import path
 
-
 github_zip = '%s/archive/master.zip'
 
 source_dir = path.join(path.dirname(__file__), '..', 'bundle')
 
-
 def download_extract_replace(plugin_name, zip_path, temp_dir):
+    print('Updated {0}'.format(plugin_name))
+
     temp_zip_path = path.join(temp_dir, plugin_name)
 
     # Download and extract file in temp dir
@@ -36,8 +36,6 @@ def download_extract_replace(plugin_name, zip_path, temp_dir):
 
     shutil.move(plugin_temp_path, plugin_dest_path)
 
-    print('Updated {0}'.format(plugin_name))
-
 
 if __name__ == '__main__':
     temp_directory = tempfile.mkdtemp()
@@ -49,4 +47,5 @@ if __name__ == '__main__':
                 zip_path = github_zip % github_url
                 download_extract_replace(name, zip_path, temp_directory)
     finally:
-        shutil.rmtree(temp_directory)
+        print (temp_directory)
+        # shutil.rmtree(temp_directory)

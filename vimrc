@@ -164,7 +164,7 @@ set scrolljump=5
 set scrolloff=3
 
 " Space in normal mode as PageDown
-nmap <Space> <PageDown>
+"nmap <Space> <PageDown>
 
 " C-c and C-v - Copy/Paste to global clipboard
 vmap <C-C> "+yi
@@ -258,7 +258,7 @@ au FileType python set cinkeys-=0#
 au FileType python set indentkeys-=0#
 
 " JavaScript
-u FileType javascript setl fen
+au FileType javascript setl fen
 au FileType javascript setl nocindent
 
 au FileType javascript imap <c-t> $log();<esc>hi
@@ -336,8 +336,35 @@ set statusline+=%*
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E225  --max-complexity 10 --max-line-length=120'
+
+"------------------------------------------------------------------------------
+" NERD Commenter 
+"------------------------------------------------------------------------------
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 "------------------------------------------------------------------------------
 " NeoComplete
@@ -383,11 +410,27 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 let g:neocomplete#enable_auto_select = 1
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+let g:neocomplcache_omni_functions = {
+    \ '_': 'omnifunc',
+    \ 'python': 'python3complete#Complete',
+    \ 'ruby': 'rubycomplete#Complete',
+    \ 'c': 'ccomplete#Complete',
+    \ 'go': 'gocomplete#Complete',
+    \ 'cpp,hpp': 'omni#cpp#complete#Main',
+    \ 'html,markdown': 'htmlcomplete#CompleteTags',
+    \ 'css': 'csscomplete#CompleteCSS',
+    \ 'javascript': 'javascriptcomplete#CompleteJS',
+    \ 'xml': 'xmlcomplete#CompleteTags',
+    \ 'php': 'phpcomplete#CompletePHP',
+    \ 'sql': 'sqlcomplete#Map("sqlkeyword")',
+    \ 'haskell': 'necoghc#omnifunc',
+    \ }
 
 " Enable heavy omni completion.
 "if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -427,7 +470,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+"au FileType go nmap <leader>c <Plug>(go-coverage)
 
 " By default syntax-highlighting for Functions, Methods and Structs is disabled.
 " Let's enable them!
