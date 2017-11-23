@@ -13,3 +13,4 @@ neocomplete.vim https://github.com/shougo/neocomplete.vim
 tagbar https://github.com/majutsushi/tagbar
 vim-flake8 https://github.com/nvie/vim-flake8
 lightline.vim https://github.com/itchyny/lightline.vim
+vim-easygrep https://github.com/dkprice/vim-easygrep
