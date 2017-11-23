@@ -111,11 +111,17 @@ endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ Regular\ 14
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
+    elseif has("gui_win32")
+        set guifont=Consolas:h11:cANSI
+    endif
     set guioptions-=T
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Misc\ Fixed\ Semi-Condensed\ 13
 endif
 
 " Color theme
@@ -506,6 +512,20 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Jedi python 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jedi#force_py_version = 3
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
