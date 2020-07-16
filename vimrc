@@ -346,7 +346,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501,E225  --max-complexity 10 --max-line-length=120'
+let g:syntastic_python_flake8_args='--ignore=E401,E501,E225 --max-complexity 20 --max-line-length=120'
 
 "------------------------------------------------------------------------------
 " NERD Commenter 

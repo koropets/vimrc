@@ -11,6 +11,7 @@ github_zip = '%s/archive/master.zip'
 
 source_dir = path.join(path.dirname(__file__), '..', 'bundle')
 
+
 def download_extract_replace(plugin_name, zip_path, temp_dir):
     print('Updated {0}'.format(plugin_name))
 
@@ -47,5 +48,5 @@ if __name__ == '__main__':
                 zip_path = github_zip % github_url
                 download_extract_replace(name, zip_path, temp_directory)
     finally:
-        print (temp_directory)
+        print(temp_directory)
         # shutil.rmtree(temp_directory)

@@ -6,4 +6,4 @@ if [ -d $bundle_dir ]
 then
     git clone https://github.com/davidhalter/jedi-vim.git
 fi
-sudo pip install jedi
+sudo pip3 install jedi
