@@ -39,6 +39,8 @@ Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'tomasr/molokai'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'dkprice/vim-easygrep'
+Plug 'github.com/vim-syntastic/syntastic'
 
 
 let g:make = 'gmake'
@@ -117,6 +119,7 @@ au FileType yaml setl sw=2 sts=2 ts=2 et
 
 " Jinja2 *.template
 au BufNewFile,BufRead *.template set syntax=jinja
+au BufNewFile,BufRead *.j2 set syntax=jinja
 
 
 "*****************************************************************************
@@ -287,6 +290,19 @@ let Grep_Skip_Dirs = '.git node_modules'
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
 
+" Run current line
+nnoremap <leader>r :.w !bash
+
+" Syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 
 "*****************************************************************************
 "" Commands
@@ -338,6 +354,11 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
@@ -533,7 +554,9 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript setl tabstop=4|setl shiftwidth=4|setl expandtab softtabstop=4
+" autocmd FileType javascript setl tabstop=4|setl shiftwidth=4|setl expandtab softtabstop=4
+  autocmd FileType javascript setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
+  autocmd FileType javascriptreact setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
 augroup END
 
 
@@ -573,7 +596,7 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-
+:nnoremap _ :s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g<CR>
 
 "*****************************************************************************
 "*****************************************************************************
